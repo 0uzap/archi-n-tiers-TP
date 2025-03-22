@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package todo;
+
+// Définition du service
+service TodoService {
+  rpc AddTask (Task) returns (AddTaskResponse);
+  rpc GetTasks (Empty) returns (TaskList);
+  rpc GetGames (Empty) returns (GameList);
+  rpc CreateProduct (Product) returns (CreateProductReponse);
+  rpc GetProduct (Empty) returns (ProductList);
+  rpc UpdateProduct (UpdateProduct) returns (UpdateProductResponse);
+  rpc DeleteProduct (DeleteProduct) returns (DeleteProductResponse);
+}
+
+// Messages utilisés par le service
+message Task {
+  string id = 1;
+  string description = 2;
+}
+
+message Game {
+  string id = 1;
+  string title = 2;
+}
+
+message Product {
+  string _id = 1;
+  string nom = 2;
+  string description = 3;
+}
+
+message UpdateProduct {
+  string id = 1;
+  string nom = 2;
+  string description = 3; 
+}
+
+message DeleteProduct {
+  string id = 1;
+}
+
+message AddTaskResponse {
+  string message = 1;
+}
+
+message CreateProductReponse {
+  Product product = 1;
+}
+
+message UpdateProductResponse {
+  Product product = 1;
+}
+
+message DeleteProductResponse {
+  Product product = 1;
+}
+
+message TaskList {
+  repeated Task tasks = 1;
+}
+
+message GameList {
+  repeated Game games = 1;
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
+
+message Empty {}
